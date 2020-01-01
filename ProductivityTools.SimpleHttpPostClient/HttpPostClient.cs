@@ -52,7 +52,6 @@ namespace ProductivityTools.SimpleHttpPostClient
             Uri url = new Uri(BaseUrl + "/" + controller + "/" + action);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            
 
             //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, action);
 
