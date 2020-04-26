@@ -1,12 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,7 +10,6 @@ namespace ProductivityTools.SimpleHttpPostClient
     public class HttpPostClient
     {
         private string BaseUrl { get; set; }
-        private bool Logging { get; set; }
         public HttpClient HttpClient { get; private set; }
 
         public HttpPostClient()
@@ -33,11 +27,6 @@ namespace ProductivityTools.SimpleHttpPostClient
             {
                 this.HttpClient = new HttpClient();
             }
-        }
-
-        public void EnableLogging(bool enable = true)
-        {
-            this.Logging = enable;
         }
 
         public void SetBaseUrl(string url)

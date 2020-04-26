@@ -11,8 +11,7 @@ namespace ProductivityTools.SimpleHttpPostClient.Tester
             Console.WriteLine("Hello World!");
             Console.WriteLine("Hit enter to start test");
             Console.ReadLine();
-            HttpPostClient client = new HttpPostClient();
-            client.EnableLogging();
+            HttpPostClient client = new HttpPostClient(true);
             client.SetBaseUrl("https://localhost:8801/Api");
 
             ComplexObject complex = new ComplexObject();
