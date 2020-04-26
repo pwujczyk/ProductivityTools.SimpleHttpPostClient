@@ -16,10 +16,23 @@ namespace ProductivityTools.SimpleHttpPostClient
     {
         private string BaseUrl { get; set; }
         private bool Logging { get; set; }
+        public HttpClient HttpClient { get; private set; }
 
         public HttpPostClient()
         {
+            this.HttpClient = new HttpClient();
+        }
 
+        public HttpPostClient(bool enableLogging)
+        {
+            if (enableLogging)
+            {
+                this.HttpClient = new HttpClient(new LoggingHandler(new HttpClientHandler()));
+            }
+            else
+            {
+                this.HttpClient = new HttpClient();
+            }
         }
 
         public void EnableLogging(bool enable = true)
@@ -39,26 +52,16 @@ namespace ProductivityTools.SimpleHttpPostClient
 
         public async Task<T> Post<T>(string controller, string action, object obj)
         {
-            HttpClient client = null;
-            if (Logging)
-            {
-                client = new HttpClient(new LoggingHandler(new HttpClientHandler()));
-            }
-            else
-            {
-                client = new HttpClient();
-            }
-
             Uri url = new Uri(BaseUrl + "/" + controller + "/" + action);
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            this.HttpClient.DefaultRequestHeaders.Accept.Clear();
+            this.HttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, action);
 
             var dataAsString = JsonConvert.SerializeObject(obj);
             var content = new StringContent(dataAsString,Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await client.PostAsync(url, content);
+            HttpResponseMessage response = await this.HttpClient.PostAsync(url, content);
             if (response.IsSuccessStatusCode)
             {
                 var resultAsString = await response.Content.ReadAsStringAsync();
