@@ -18,15 +18,15 @@ namespace ProductivityTools.SimpleHttpPostClient.Tester
             complex.NameIn = "Pawel Wujczyk";
             Assert.IsNull(complex.NameOut);
 
-            var index = client.Post<string>("Test", "Index").GetAwaiter().GetResult();
+            var index = client.PostAsync<string>("Test", "Index").GetAwaiter().GetResult();
             Assert.AreEqual("Test", index);
             Console.WriteLine("Index string test OK!");
 
 
-            var nullresult = client.Post<object>("Test", "Null").GetAwaiter().GetResult();
+            var nullresult = client.PostAsync<object>("Test", "Null").GetAwaiter().GetResult();
             Console.WriteLine("null test OK!");
 
-            var result = client.Post<ComplexObject>("Test", "FillNameOut", complex).GetAwaiter().GetResult();
+            var result = client.PostAsync<ComplexObject>("Test", "FillNameOut", complex).GetAwaiter().GetResult();
             Assert.AreEqual("Pawel Wujczyk", result.NameOut);
             Console.WriteLine("Complex object test OK!");
 

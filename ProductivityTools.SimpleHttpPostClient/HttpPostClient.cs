@@ -34,12 +34,12 @@ namespace ProductivityTools.SimpleHttpPostClient
             this.BaseUrl = url;
         }
 
-        public async Task<T> Post<T>(string controller, string action)
+        public async Task<T> PostAsync<T>(string controller, string action)
         {
-            return await Post<T>(controller, action, null);
+            return await PostAsync<T>(controller, action, null);
         }
 
-        public async Task<T> Post<T>(string controller, string action, object obj)
+        public async Task<T> PostAsync<T>(string controller, string action, object obj)
         {
             Uri url = new Uri(BaseUrl + "/" + controller + "/" + action);
             this.HttpClient.DefaultRequestHeaders.Accept.Clear();
