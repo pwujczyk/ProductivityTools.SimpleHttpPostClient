@@ -1,17 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="NUnit" Version="3.12.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\ProductivityTools.SimpleHttpPostClient.CommonObjects\ProductivityTools.SimpleHttpPostClient.CommonObjects.csproj" />
     <ProjectReference Include="..\ProductivityTools.SimpleHttpPostClient\ProductivityTools.SimpleHttpPostClient.csproj" />
   </ItemGroup>
-
 </Project>
